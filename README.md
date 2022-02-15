@@ -2,9 +2,11 @@
 
 > This is a simple implementation of a todo list using the minimalist demo.
 
+![screenshot](./src/asset/screenshot.png)
+
 ## Live Demo
 
-[Live Demo Link](https://mirouhml.github.io/Awesome-Books-ES6/)
+[Live Demo Link](https://mirouhml.github.io/To-Do-list/dist/index.html)
 
 ### Features implemented so far are:
 
@@ -14,6 +16,7 @@
 - Stylelint
 - ESlint
 - Webpack
+- ES6
 
 ### Prerequisites
 
