@@ -13,6 +13,16 @@ const dynamicSort = (property) => {
 };
 
 const listContainer = document.getElementById('to-do-list');
+listContainer.innerHTML = `<li class="list-item">
+                              <h2>Todo List</h2>
+                              <img id="refresh" src="./asset/refresh.svg" alt="Refresh icon">
+                            </li>
+                            <hr>
+                            <li class="list-item">
+                              <input type="text" placeholder="Add to your list...">
+                              <img id="enter" src="./asset/enter.svg" alt="Enter icon">
+                            </li>
+                            <hr>`;
 
 const createTask = (task, i) => {
   const listItem = document.createElement('li');
@@ -41,6 +51,11 @@ const display = (tasks) => {
   for (let i = 0; i < tasks.length; i += 1) {
     createTask(tasks[i], i);
   }
+  const listItem = document.createElement('li');
+  listItem.innerHTML = '<a href="#">Clear all completed tasks</a>';
+  listItem.classList.add('list-item');
+  listItem.classList.add('last-item');
+  listContainer.appendChild(listItem);
 };
 
 export default (display);

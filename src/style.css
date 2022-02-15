@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto");
-
 * {
   margin: 0;
   padding: 0;
@@ -49,6 +48,7 @@ body {
   display: flex;
   padding: 10px 0 10px 10px;
   align-items: center;
+  justify-content: center;
 }
 
 .todo-section {
@@ -100,4 +100,20 @@ input[type="text"] {
 
 hr:last-of-type {
   border: 0;
+}
+
+a {
+  color: #bdbdbd;
+  text-align: center;
+  font-weight: 100;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: black;
+}
+
+.last-item {
+  background-color: #f6f6f6;
 }
