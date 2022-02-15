@@ -16,7 +16,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_taskHandler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/taskHandler */ \"./src/modules/taskHandler.js\");\n\r\n\r\nconst toDoList = [\r\n  { \r\n    description: 'task 1',\r\n    completed: false,\r\n    index: 0,\r\n  },\r\n  { \r\n    description: 'task 2',\r\n    completed: false,\r\n    index: 1,\r\n  },\r\n  { \r\n    description: 'task 3',\r\n    completed: false,\r\n    index: 2,\r\n  },\r\n];\r\n\r\n(0,_modules_taskHandler__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(toDoList);\n\n//# sourceURL=webpack://to-do-list/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_taskHandler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/taskHandler */ \"./src/modules/taskHandler.js\");\n\r\n\r\nconst toDoList = [\r\n  { \r\n    description: 'task 1',\r\n    completed: false,\r\n    index: 2,\r\n  },\r\n  { \r\n    description: 'task 2',\r\n    completed: false,\r\n    index: 1,\r\n  },\r\n  { \r\n    description: 'task 3',\r\n    completed: false,\r\n    index: 3,\r\n  },\r\n];\r\n\r\n(0,_modules_taskHandler__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(toDoList);\n\n//# sourceURL=webpack://to-do-list/./src/index.js?");
 
 /***/ }),
 
@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mod
   \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst createTask = (task) => {\r\n  const listContainer = document.getElementById('to-do-list');\r\n  const listItem = document.createElement('li');\r\n  listItem.innerHTML = `<h2>${task.description}</h2>`;\r\n  listContainer.appendChild(listItem);\r\n};\r\n\r\nconst display = (tasks) => {\r\n  for(let i = 0; i < tasks.length; i++) {\r\n    createTask(tasks[i]);\r\n  }\r\n};\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (display);\n\n//# sourceURL=webpack://to-do-list/./src/modules/taskHandler.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst dynamicSort = (property) => {\r\n  var sortOrder = 1;\r\n  // if(property[0] === \"-\") {\r\n  //   sortOrder = -1;\r\n  //   property = property.substr(1);\r\n  // }\r\n  return (a,b) => {\r\n    var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;\r\n    return result * sortOrder;\r\n  }\r\n}\r\n\r\nconst createTask = (task) => {\r\n  const listContainer = document.getElementById('to-do-list');\r\n  const listItem = document.createElement('li');\r\n  listItem.innerHTML = `<h2>${task.description}</h2>`;\r\n  listContainer.appendChild(listItem);\r\n};\r\n\r\nconst display = (tasks) => {\r\n  tasks.sort( dynamicSort(\"index\") );\r\n  for(let i = 0; i < tasks.length; i++) {\r\n    createTask(tasks[i]);\r\n  }\r\n};\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (display);\n\n//# sourceURL=webpack://to-do-list/./src/modules/taskHandler.js?");
 
 /***/ })
 

@@ -4,7 +4,7 @@ const toDoList = [
   { 
     description: 'task 1',
     completed: false,
-    index: 0,
+    index: 2,
   },
   { 
     description: 'task 2',
@@ -14,7 +14,7 @@ const toDoList = [
   { 
     description: 'task 3',
     completed: false,
-    index: 2,
+    index: 3,
   },
 ];
 
