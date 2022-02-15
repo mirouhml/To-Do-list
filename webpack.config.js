@@ -21,9 +21,18 @@ module.exports = {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: [/\.svg$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+        loader: 'file-loader',
+        options: {
+          name: 'asset/[name].[ext]',
+        },
+      },
     ],
   },
   devServer: {
-    static: './dist',
+    static: ['dist'],
+    hot: true,
+    historyApiFallback: true,
   },
 };

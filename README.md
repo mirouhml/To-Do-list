@@ -48,7 +48,7 @@ npx stylelint "**/*.{css,scss}"
 ## Getting packages and debuging with ESlint
 
 ```
-npm install npm install --save-dev eslint@7.x eslint-config-airbnb-base@14.x eslint-plugin-import@2.x babel-eslint@10.x
+npm install --save-dev eslint@7.x eslint-config-airbnb-base@14.x eslint-plugin-import@2.x babel-eslint@10.x
 ```
 
 ##### For validation detection using Stylelint Run
@@ -79,6 +79,7 @@ npx hint .
 ```
 npm install webpack webpack-cli --save-dev
 npm install --save-dev html-webpack-plugin
+npm install --save-dev style-loader css-loader
 npm install --save-dev webpack-dev-server
 ```
 
