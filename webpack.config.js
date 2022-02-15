@@ -28,6 +28,14 @@ module.exports = {
           name: 'asset/[name].[ext]',
         },
       },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader',
+        ],
+      },
     ],
   },
   devServer: {

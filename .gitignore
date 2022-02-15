@@ -3,3 +3,4 @@ node_modules
 src/sass
 .eslintrc.json
 .stylelintrc.json
+package-lock.json

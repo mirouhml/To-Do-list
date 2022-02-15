@@ -7,8 +7,8 @@
 
 html,
 body {
-  height: 100%;
   font-family: 'Roboto', sans-serif;
+  height: 100%;
   font-size: 16px;
 }
 
@@ -74,6 +74,14 @@ h2 {
 #refresh {
   margin-right: 10px;
   width: 12px;
+}
+
+#refresh {
+  overflow: hidden;
+  transition-duration: 0.2s;
+  transition-property: transform;
+  transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
 }
 
 .dots {

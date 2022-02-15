@@ -13,16 +13,6 @@ const dynamicSort = (property) => {
 };
 
 const listContainer = document.getElementById('to-do-list');
-listContainer.innerHTML = `<li class="list-item">
-                              <h2>Todo List</h2>
-                              <img id="refresh" src="./asset/refresh.svg" alt="Refresh icon">
-                            </li>
-                            <hr>
-                            <li class="list-item">
-                              <input type="text" placeholder="Add to your list...">
-                              <img id="enter" src="./asset/enter.svg" alt="Enter icon">
-                            </li>
-                            <hr>`;
 
 const createTask = (task, i) => {
   const listItem = document.createElement('li');
@@ -36,17 +26,38 @@ const createTask = (task, i) => {
   listContainer.appendChild(hr);
   const checkbox = document.getElementById(`checkbox${i}`);
   const checkmark = document.getElementById(`checkmark${i}`);
+  const text = document.querySelector('.task-description');
   checkbox.addEventListener('click', () => {
     checkbox.style.display = 'none';
     checkmark.style.display = 'block';
+    text.style.textDecoration = 'line-through';
+    text.style.color = 'gray';
   });
   checkmark.addEventListener('click', () => {
     checkbox.style.display = 'block';
     checkmark.style.display = 'none';
+    text.style.textDecoration = 'none';
+    text.style.color = 'black';
   });
 };
 
 const display = (tasks) => {
+  listContainer.innerHTML = `<li class="list-item">
+                              <h2>Todo List</h2>
+                              <img id="refresh" src="./asset/refresh.svg" alt="Refresh icon">
+                            </li>
+                            <hr>
+                            <li class="list-item">
+                              <input type="text" placeholder="Add to your list...">
+                              <img id="enter" src="./asset/enter.svg" alt="Enter icon">
+                            </li>
+                            <hr>`;
+  const refresh = document.getElementById('refresh');
+  let rotate = -360;
+  refresh.addEventListener('click', () => {
+    refresh.style.transform = `rotate(${rotate}deg)`;
+    rotate -= 360;
+  });
   tasks.sort(dynamicSort('index'));
   for (let i = 0; i < tasks.length; i += 1) {
     createTask(tasks[i], i);
