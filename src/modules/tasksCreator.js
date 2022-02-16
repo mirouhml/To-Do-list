@@ -14,6 +14,7 @@ export default class Tasks {
 
   populateStorage() {
     localStorage.setItem('tasks', JSON.stringify(this.list));
+    this.setTasks();
   }
 
   add(description) {
@@ -43,11 +44,10 @@ export default class Tasks {
     this.list[index].index = task.index;
     this.list.sort(dynamicSort('index'));
     this.populateStorage();
-    console.log(this.list);
   }
 
   clear() {
-    this.list = this.list.filter(task => task.completed === false);
+    this.list = this.list.filter((task) => task.completed === false);
     for (let i = 0; i < this.list.length; i += 1) {
       this.list[i].index = i + 1;
     }
@@ -59,6 +59,7 @@ export default class Tasks {
   }
 
   setTasks() {
+    console.log('setTasks');
     if (localStorage.getItem('tasks')) { this.list = JSON.parse(localStorage.getItem('tasks')); }
   }
 }
