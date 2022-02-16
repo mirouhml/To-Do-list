@@ -88,6 +88,7 @@ npm install --save-dev webpack-dev-server
 
 ## Running the website locally
 ```
+npm run build
 npm start
 ```
 
