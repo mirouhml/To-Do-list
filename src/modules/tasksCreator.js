@@ -1,9 +1,5 @@
 const dynamicSort = (property) => {
   const sortOrder = 1;
-  // if(property[0] === "-") {
-  //   sortOrder = -1;
-  //   property = property.substr(1);
-  // }
   return (a, b) => {
     let result = 0;
     if (a[property] < b[property]) result = -1;
