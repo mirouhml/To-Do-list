@@ -4,23 +4,36 @@ import './asset/checkmark.svg';
 import './asset/vertical-dots.svg';
 import './asset/refresh.svg';
 import './asset/enter.svg';
+import './asset/garbage.svg';
+import Tasks from './modules/tasksCreator.js';
 
-const toDoList = [
-  {
-    description: 'task 1',
-    completed: false,
-    index: 2,
-  },
-  {
-    description: 'task 2',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'task 3',
-    completed: false,
-    index: 0,
-  },
-];
+const tasks = new Tasks();
+display(tasks.getTasks());
+const refresh = document.getElementById('refresh');
+let rotate = -360;
+refresh.addEventListener('click', () => {
+  refresh.style.transform = `rotate(${rotate}deg)`;
+  rotate -= 360;
+});
 
-display(toDoList);
+const enter = document.getElementById('enter');
+const input = document.getElementById('add-task');
+enter.addEventListener('click', () => {
+  tasks.add(input.value);
+  input.value = '';
+  display(tasks.getTasks());
+});
+
+input.addEventListener('keydown', (e) => {
+  if (e.code === 'Enter') {
+    tasks.add(input.value);
+    input.value = '';
+    display(tasks.getTasks());
+  }
+});
+
+const clear = document.getElementById('clear');
+clear.addEventListener('click', () => {
+  tasks.clear();
+  display(tasks.getTasks());
+});
