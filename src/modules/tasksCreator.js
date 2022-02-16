@@ -1,23 +1,20 @@
+const dynamicSort = (property) => {
+  const sortOrder = 1;
+  // if(property[0] === "-") {
+  //   sortOrder = -1;
+  //   property = property.substr(1);
+  // }
+  return (a, b) => {
+    let result = 0;
+    if (a[property] < b[property]) result = -1;
+    else if (a[property] > b[property]) result = 1;
+    return result * sortOrder;
+  };
+};
 export default class Tasks {
   constructor() {
-    if (localStorage.getItem('tasks'))
-      this.list = JSON.parse(localStorage.getItem('tasks'));
-    else this.list = [];
+    if (localStorage.getItem('tasks')) { this.list = JSON.parse(localStorage.getItem('tasks')); } else this.list = [];
   }
-
-  dynamicSort(property) {
-    const sortOrder = 1;
-    // if(property[0] === "-") {
-    //   sortOrder = -1;
-    //   property = property.substr(1);
-    // }
-    return (a, b) => {
-      let result = 0;
-      if (a[property] < b[property]) result = -1;
-      else if (a[property] > b[property]) result = 1;
-      return result * sortOrder;
-    };
-  };
 
   populateStorage() {
     localStorage.setItem('tasks', JSON.stringify(this.list));
@@ -25,20 +22,20 @@ export default class Tasks {
 
   add(description) {
     const task = {
-      description: description,
+      description,
       completed: false,
       index: this.list.length + 1,
     };
     this.list.push(task);
-    this.list.sort(this.dynamicSort('index'));
+    this.list.sort(dynamicSort('index'));
     this.populateStorage();
   }
 
   remove(index) {
     this.list[index].index = this.list.length + 1;
-    this.list.sort(this.dynamicSort('index'));
+    this.list.sort(dynamicSort('index'));
     this.list.pop();
-    for (let i= 0; i < this.list.length; i += 1) {
+    for (let i = 0; i < this.list.length; i += 1) {
       this.list[i].index = i + 1;
     }
     this.populateStorage();
@@ -48,15 +45,13 @@ export default class Tasks {
     this.list[index].description = task.description;
     this.list[index].completed = task.completed;
     this.list[index].index = task.index;
-    this.list.sort(this.dynamicSort('index'));
+    this.list.sort(dynamicSort('index'));
     this.populateStorage();
-    console.log('here');
   }
 
   clear() {
     this.list = [];
-    if (localStorage.getItem('tasks'))
-      localStorage.removeItem('tasks');
+    if (localStorage.getItem('tasks')) { localStorage.removeItem('tasks'); }
   }
 
   getTasks() {
@@ -64,7 +59,6 @@ export default class Tasks {
   }
 
   setTasks() {
-    if (localStorage.getItem('tasks'))
-      this.list = JSON.parse(localStorage.getItem('tasks'));
+    if (localStorage.getItem('tasks')) { this.list = JSON.parse(localStorage.getItem('tasks')); }
   }
 }

@@ -1,4 +1,4 @@
-import Tasks from "./tasksCreator";
+import Tasks from './tasksCreator.js';
 
 const listContainer = document.getElementById('to-do-list');
 
@@ -6,7 +6,7 @@ const tasksObject = new Tasks();
 
 const display = (tasks) => {
   tasksObject.setTasks();
-  listContainer.innerHTML = ``;
+  listContainer.innerHTML = '';
   for (let i = 0; i < tasks.length; i += 1) {
     const listItem = document.createElement('li');
     listItem.classList.add('list-item');
@@ -33,8 +33,8 @@ const display = (tasks) => {
         description: tasks[i].description,
         completed: true,
         index: tasks[i].index,
-      }
-      tasksObject.edit(i,task);
+      };
+      tasksObject.edit(i, task);
     });
     checkmark.addEventListener('click', () => {
       checkbox.style.display = 'block';
@@ -45,53 +45,45 @@ const display = (tasks) => {
         description: tasks[i].description,
         completed: false,
         index: tasks[i].index,
-      }
-      tasksObject.edit(i,task);
+      };
+      tasksObject.edit(i, task);
     });
-    const remove = document.getElementById('remove'+i);
-    const dots = document.getElementById('dots'+i);
-    const input = document.getElementById('description'+i);
-    const inputDiv = document.getElementById('input-div'+i);
+    const remove = document.getElementById(`remove${i}`);
+    const dots = document.getElementById(`dots${i}`);
+    const input = document.getElementById(`description${i}`);
+    const inputDiv = document.getElementById(`input-div${i}`);
     input.value = tasks[i].description;
-    
 
-    document.addEventListener('click', function(event) {
-      let isClickInside = inputDiv.contains(event.target);
+    document.addEventListener('click', (event) => {
+      const isClickInside = inputDiv.contains(event.target);
       if (!isClickInside) {
-        //the click was outside the specifiedElement, do something
+        // the click was outside the specifiedElement, do something
         listItem.style.backgroundColor = '#fff';
         input.style.backgroundColor = '#fff';
         remove.style.display = 'none';
         dots.style.display = 'block';
-        if (checkmark.style.display === 'block')
-          text.style.textDecoration = 'line-through';
+        if (checkmark.style.display === 'block') text.style.textDecoration = 'line-through';
       } else {
         listItem.style.backgroundColor = '#fffeca';
         input.style.backgroundColor = '#fffeca';
         remove.style.display = 'block';
         dots.style.display = 'none';
-        if (checkmark.style.display === 'block')
-          text.style.textDecoration = 'none';
+        if (checkmark.style.display === 'block') text.style.textDecoration = 'none';
       }
     });
     remove.addEventListener('click', () => {
-      console.log('remove clicked '+i);
       tasksObject.remove(i);
       display(tasksObject.getTasks());
-      // let new_element = inputDiv.cloneNode(true);
-      // inputDiv.parentNode.replaceChild(new_element, inputDiv);
     });
     input.addEventListener('change', () => {
       const task = {
         description: input.value,
         completed: tasks[i].completed,
         index: tasks[i].index,
-      }
-      tasksObject.edit(i,task);
+      };
+      tasksObject.edit(i, task);
     });
   }
 };
-
-
 
 export default (display);

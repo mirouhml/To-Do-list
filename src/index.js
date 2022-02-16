@@ -24,8 +24,8 @@ enter.addEventListener('click', () => {
   display(tasks.getTasks());
 });
 
-input.addEventListener("keydown", (e) => {
-  if (e.code === "Enter") {
+input.addEventListener('keydown', (e) => {
+  if (e.code === 'Enter') {
     tasks.add(input.value);
     input.value = '';
     display(tasks.getTasks());
@@ -36,5 +36,4 @@ const clear = document.getElementById('clear');
 clear.addEventListener('click', () => {
   tasks.clear();
   display(tasks.getTasks());
-})
-
+});
