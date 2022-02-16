@@ -59,7 +59,6 @@ export default class Tasks {
   }
 
   setTasks() {
-    console.log('setTasks');
     if (localStorage.getItem('tasks')) { this.list = JSON.parse(localStorage.getItem('tasks')); }
   }
 }
