@@ -6,7 +6,7 @@
 
 ## Live Demo
 
-[Live Demo Link](https://mirouhml.github.io/To-Do-list/dist/index.html)
+[Live Demo Link](https://mirouhml.github.io/To-Do-list)
 
 ### Features implemented so far are:
 
