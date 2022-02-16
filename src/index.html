@@ -8,11 +8,24 @@
 </head>
 <body>
     <section class="todo-section">
-        <ul id="to-do-list">
-            <li>
-                <h2>Placeholder</h2>
-            </li>
-        </ul>
+        <div class="todo-div">
+            <ul class="to-do-list" id="top-list">
+                <li class="list-item">
+                    <h2>Todo List</h2>
+                    <img id="refresh" src="./asset/refresh.svg" alt="Refresh icon">
+                </li>
+                <hr>
+                <li class="list-item">
+                    <input id="add-task" type="text" placeholder="Add to your list...">
+                    <img id="enter" src="./asset/enter.svg" alt="Enter icon">
+                </li>
+                <hr>
+            </ul>
+            <ul class="to-do-list" id="to-do-list"></ul>
+            <div>
+                <a id="clear" class="list-item last-item to-do-list" href="#">Clear all completed tasks</a>
+            </div>
+        </div>
     </section>
 </body>
 </html>
