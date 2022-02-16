@@ -1,5 +1,5 @@
 import Tasks from './tasksCreator.js';
-
+import {updateStatus} from './taskUpdater.js';
 const listContainer = document.getElementById('to-do-list');
 
 const tasksObject = new Tasks();
@@ -24,30 +24,8 @@ const display = (tasks) => {
     const checkbox = document.getElementById(`checkbox${i}`);
     const checkmark = document.getElementById(`checkmark${i}`);
     const text = document.getElementById(`description${i}`);
-    checkbox.addEventListener('click', () => {
-      checkbox.style.display = 'none';
-      checkmark.style.display = 'block';
-      text.style.textDecoration = 'line-through';
-      text.style.color = 'gray';
-      const task = {
-        description: tasks[i].description,
-        completed: true,
-        index: tasks[i].index,
-      };
-      tasksObject.edit(i, task);
-    });
-    checkmark.addEventListener('click', () => {
-      checkbox.style.display = 'block';
-      checkmark.style.display = 'none';
-      text.style.textDecoration = 'none';
-      text.style.color = 'black';
-      const task = {
-        description: tasks[i].description,
-        completed: false,
-        index: tasks[i].index,
-      };
-      tasksObject.edit(i, task);
-    });
+    const elementArray = [checkmark, checkbox, text];
+    updateStatus(elementArray,tasks[i],i);
     const remove = document.getElementById(`remove${i}`);
     const dots = document.getElementById(`dots${i}`);
     const input = document.getElementById(`description${i}`);

@@ -25,7 +25,6 @@ export default class Tasks {
     this.list.push(task);
     this.list.sort(dynamicSort('index'));
     this.populateStorage();
-    console.log(this.list);
   }
 
   remove(index) {
@@ -44,6 +43,7 @@ export default class Tasks {
     this.list[index].index = task.index;
     this.list.sort(dynamicSort('index'));
     this.populateStorage();
+    console.log(this.list);
   }
 
   clear() {
@@ -51,7 +51,6 @@ export default class Tasks {
     for (let i = 0; i < this.list.length; i += 1) {
       this.list[i].index = i + 1;
     }
-    console.log(this.list);
     this.populateStorage();
   }
 
