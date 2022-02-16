@@ -14,6 +14,7 @@ export default class Tasks {
 
   populateStorage() {
     localStorage.setItem('tasks', JSON.stringify(this.list));
+    this.setTasks();
   }
 
   add(description) {
@@ -46,8 +47,11 @@ export default class Tasks {
   }
 
   clear() {
-    this.list = [];
-    if (localStorage.getItem('tasks')) { localStorage.removeItem('tasks'); }
+    this.list = this.list.filter((task) => task.completed === false);
+    for (let i = 0; i < this.list.length; i += 1) {
+      this.list[i].index = i + 1;
+    }
+    this.populateStorage();
   }
 
   getTasks() {
