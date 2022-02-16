@@ -6,6 +6,7 @@ import './asset/refresh.svg';
 import './asset/enter.svg';
 import './asset/garbage.svg';
 import Tasks from './modules/tasksCreator.js';
+import {clearCompleted} from './modules/taskUpdater.js';
 
 const tasks = new Tasks();
 display(tasks.getTasks());
@@ -32,8 +33,4 @@ input.addEventListener('keydown', (e) => {
   }
 });
 
-const clear = document.getElementById('clear');
-clear.addEventListener('click', () => {
-  tasks.clear();
-  display(tasks.getTasks());
-});
+clearCompleted();

@@ -25,6 +25,7 @@ export default class Tasks {
     this.list.push(task);
     this.list.sort(dynamicSort('index'));
     this.populateStorage();
+    console.log(this.list);
   }
 
   remove(index) {
@@ -46,8 +47,12 @@ export default class Tasks {
   }
 
   clear() {
-    this.list = [];
-    if (localStorage.getItem('tasks')) { localStorage.removeItem('tasks'); }
+    this.list = this.list.filter(task => task.completed === false);
+    for (let i = 0; i < this.list.length; i += 1) {
+      this.list[i].index = i + 1;
+    }
+    console.log(this.list);
+    this.populateStorage();
   }
 
   getTasks() {
