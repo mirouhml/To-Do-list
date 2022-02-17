@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 @import url("https://fonts.googleapis.com/css2?family=Roboto");
 
 * {
@@ -116,7 +117,7 @@ h2 {
 }
 
 .dots {
-  cursor: grab;
+  cursor: move;
 }
 
 input {
@@ -168,7 +169,11 @@ a:hover {
   display: flex;
 }
 
-#top-list li {
+li {
   border: 0;
   border-bottom: 1px solid #c7c7c7;
+}
+
+.draggable.dragging {
+  border: 1px solid blue;
 }

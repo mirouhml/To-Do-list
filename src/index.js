@@ -6,6 +6,7 @@ import './asset/refresh.svg';
 import './asset/enter.svg';
 import './asset/garbage.svg';
 import Tasks from './modules/tasksCreator.js';
+import dragAndDrop from './modules/taskDrag.js';
 
 const tasks = new Tasks();
 display(tasks.getTasks());
@@ -37,3 +38,5 @@ clear.addEventListener('click', () => {
   tasks.clear();
   display(tasks.getTasks());
 });
+
+dragAndDrop();

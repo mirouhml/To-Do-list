@@ -10,6 +10,8 @@ const display = (tasks) => {
   for (let i = 0; i < tasks.length; i += 1) {
     const listItem = document.createElement('li');
     listItem.classList.add('list-item');
+    listItem.classList.add('draggable');
+    listItem.setAttribute('draggable', 'true');
     listItem.innerHTML = `<div class="checkbox" id="checkbox${i}"></div>
                           <img class="checkmark" id="checkmark${i}" src="./asset/checkmark.svg" alt="Checkmark">
                           <div class="input-div" id="input-div${i}">
@@ -18,9 +20,7 @@ const display = (tasks) => {
                             <img class="dots" id="dots${i}" src="./asset/vertical-dots.svg" alt="Vertical dots">
                           </div>
                           `;
-    const hr = document.createElement('hr');
     listContainer.appendChild(listItem);
-    listContainer.appendChild(hr);
     const checkbox = document.getElementById(`checkbox${i}`);
     const checkmark = document.getElementById(`checkmark${i}`);
     const text = document.getElementById(`description${i}`);

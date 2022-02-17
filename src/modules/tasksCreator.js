@@ -7,6 +7,7 @@ const dynamicSort = (property) => {
     return result * sortOrder;
   };
 };
+
 export default class Tasks {
   constructor() {
     if (localStorage.getItem('tasks')) { this.list = JSON.parse(localStorage.getItem('tasks')); } else this.list = [];
