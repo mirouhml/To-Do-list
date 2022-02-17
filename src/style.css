@@ -1,6 +1,5 @@
 /* stylelint-disable no-descending-specificity */
 @import url("https://fonts.googleapis.com/css2?family=Roboto");
-
 * {
   margin: 0;
   padding: 0;
@@ -15,11 +14,6 @@ body {
 
 .to-do-list {
   list-style-type: none;
-  border: 1px solid #e3e3e3;
-  border-bottom: 0;
-  border-radius: 3px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
   width: 400px;
 }
 
@@ -29,9 +23,6 @@ body {
 
 #to-do-list {
   overflow-y: scroll;
-  box-shadow: 0 3px 10px 0 #8f8d8c73;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
 }
 
 #to-do-list li {
@@ -90,6 +81,7 @@ body {
   max-height: 600px;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 3px 10px 0 #8f8d8c73;
 }
 
 h2,
@@ -159,9 +151,6 @@ a:hover {
   background-color: #f6f6f6;
   width: 400px;
   padding: 10px 0;
-  box-shadow: 0 3px 10px 0 #8f8d8c73;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
 }
 
 .input-div {
