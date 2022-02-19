@@ -166,3 +166,7 @@ li {
 .draggable.dragging {
   border: 1px solid blue;
 }
+
+.draggable.invisible {
+  display: none;
+}

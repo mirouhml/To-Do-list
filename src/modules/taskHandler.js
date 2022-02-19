@@ -1,11 +1,13 @@
 import Tasks from './tasksCreator.js';
 import updateStatus from './taskUpdater.js';
+import taskDrag from './taskDrag.js';
 
 const listContainer = document.getElementById('to-do-list');
 
 const tasksObject = new Tasks();
 
 const display = (tasks) => {
+  taskDrag();
   listContainer.innerHTML = '';
   for (let i = 0; i < tasks.length; i += 1) {
     const listItem = document.createElement('li');
@@ -17,7 +19,7 @@ const display = (tasks) => {
                           <div class="input-div" id="input-div${i}">
                             <input type="text" class="task-description" id="description${i}">
                             <img class="remove" id="remove${i}" src="./asset/garbage.svg" alt="Garbage bin icon">
-                            <img class="dots" id="dots${i}" src="./asset/vertical-dots.svg" alt="Vertical dots">
+                            <img class="dots" draggable="false" id="dots${i}" src="./asset/vertical-dots.svg" alt="Vertical dots">
                           </div>
                           `;
     listContainer.appendChild(listItem);
