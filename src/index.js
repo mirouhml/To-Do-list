@@ -15,6 +15,8 @@ let rotate = -360;
 refresh.addEventListener('click', () => {
   refresh.style.transform = `rotate(${rotate}deg)`;
   rotate -= 360;
+  tasks.reset();
+  display(tasks);
 });
 
 const enter = document.getElementById('enter');

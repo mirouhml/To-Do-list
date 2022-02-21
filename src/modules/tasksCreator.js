@@ -55,6 +55,11 @@ export default class Tasks {
     this.populateStorage();
   }
 
+  reset() {
+    this.list = [];
+    this.populateStorage();
+  }
+
   getTasks() {
     return this.list;
   }
