@@ -22,7 +22,7 @@ export default class Tasks {
     const task = {
       description,
       completed: false,
-      index: this.list.length + 1,
+      index: this.list.length,
     };
     this.list.push(task);
     this.list.sort(dynamicSort('index'));
@@ -36,6 +36,8 @@ export default class Tasks {
     for (let i = 0; i < this.list.length; i += 1) {
       this.list[i].index = i + 1;
     }
+    console.log(this.list.length);
+    console.log(this.list);
     this.populateStorage();
   }
 
