@@ -1,4 +1,3 @@
-
 const updateStatus = (elements, tasksObject, index) => {
   const checkbox = elements[1];
   const checkmark = elements[0];
