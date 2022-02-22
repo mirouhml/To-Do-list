@@ -5,7 +5,6 @@ const listContainer = document.getElementById('to-do-list');
 
 const display = (tasksObject) => {
   const tasks = tasksObject.getTasks();
-  taskDrag();
   listContainer.innerHTML = '';
   for (let i = 0; i < tasks.length; i += 1) {
     const listItem = document.createElement('li');
@@ -62,7 +61,7 @@ const display = (tasksObject) => {
       tasksObject.edit(i, task);
     });
   }
-  return true;
+  taskDrag(tasksObject);
 };
 
 export default (display);

@@ -1,7 +1,3 @@
-import Tasks from './tasksCreator.js';
-
-const tasks = new Tasks();
-
 const getDragAfterElement = (container, y) => {
   const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging)')];
 
@@ -15,7 +11,7 @@ const getDragAfterElement = (container, y) => {
   }, { offset: Number.NEGATIVE_INFINITY }).element;
 };
 
-const dragAndDrop = () => {
+const dragAndDrop = (tasks) => {
   const dots = [];
   const draggables = document.querySelectorAll('.draggable');
   const container = document.getElementById('to-do-list');
