@@ -1,4 +1,4 @@
-import display from './modules/taskHandler.js';
+import {display} from './modules/taskHandler.js';
 import './style.css';
 import './asset/checkmark.svg';
 import './asset/vertical-dots.svg';
@@ -6,7 +6,6 @@ import './asset/refresh.svg';
 import './asset/enter.svg';
 import './asset/garbage.svg';
 import Tasks from './modules/tasksCreator.js';
-import dragAndDrop from './modules/taskDrag.js';
 
 const tasks = new Tasks();
 display(tasks);

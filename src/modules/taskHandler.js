@@ -1,16 +1,72 @@
 import updateStatus from './taskUpdater.js';
-import taskDrag from './taskDrag.js';
 
 const listContainer = document.getElementById('to-do-list');
+
+const dynamicSort = (property) => {
+  const sortOrder = 1;
+  return (a, b) => {
+    let result = 0;
+    if (a[property] < b[property]) result = -1;
+    else if (a[property] > b[property]) result = 1;
+    return result * sortOrder;
+  };
+};
+
+const dragAndDrop = (tasks) => {
+  const list = tasks.getTasks();
+  const draggables = document.querySelectorAll('.draggable');
+  const container = document.getElementById('to-do-list');
+  draggables.forEach((draggable) => {
+    draggable.addEventListener('dragstart', () => {
+      draggable.classList.add('dragging');
+    });
+
+    draggable.addEventListener('dragend', () => {
+      draggable.classList.remove('dragging');
+      const everyChild = document.querySelectorAll("#to-do-list li");
+      everyChild.forEach((child,index) => {
+        list[child.getAttribute('id')].index = index;
+        console.log(child.getAttribute('id'))
+      });
+      list.sort(dynamicSort('index'));
+      tasks.orderTasks(list);
+    });
+  });
+  draggables.forEach((draggable) => {
+    draggable.removeEventListener('dragstart', () => {
+      draggable.classList.add('dragging');
+    });
+
+    draggable.removeEventListener('dragend', () => {
+      draggable.classList.remove('dragging');
+      const everyChild = document.querySelectorAll("#to-do-list li");
+      everyChild.forEach((child,index) => {
+        list[child.getAttribute('id')].index = index;
+      });
+      tasks.orderTasks();
+    });
+  });
+  container.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    const afterElement = getDragAfterElement(container, e.clientY);
+    const draggable = document.querySelector('.dragging');
+    if (afterElement == null) {
+      container.appendChild(draggable);
+    } else {
+      container.insertBefore(draggable, afterElement);
+    }
+  });
+};
 
 const display = (tasksObject) => {
   const tasks = tasksObject.getTasks();
   listContainer.innerHTML = '';
-  for (let i = 0; i < tasks.length; i += 1) {
+  tasks.forEach((task,i) => {
     const listItem = document.createElement('li');
     listItem.classList.add('list-item');
     listItem.classList.add('draggable');
     listItem.setAttribute('draggable', 'true');
+    listItem.setAttribute('id', i);
     listItem.innerHTML = `<div class="checkbox" id="checkbox${i}"></div>
                           <img class="checkmark" id="checkmark${i}" src="./asset/checkmark.svg" alt="Checkmark">
                           <div class="input-div" id="input-div${i}">
@@ -30,11 +86,9 @@ const display = (tasksObject) => {
     const input = document.getElementById(`description${i}`);
     const inputDiv = document.getElementById(`input-div${i}`);
     input.value = tasks[i].description;
-
     document.addEventListener('click', (event) => {
       const isClickInside = inputDiv.contains(event.target);
       if (!isClickInside) {
-        // the click was outside the specifiedElement, do something
         listItem.style.backgroundColor = '#fff';
         input.style.backgroundColor = '#fff';
         remove.style.display = 'none';
@@ -49,19 +103,32 @@ const display = (tasksObject) => {
       }
     });
     remove.addEventListener('click', () => {
-      tasksObject.remove(i);
+      tasksObject.remove(input.value);
       display(tasksObject);
     });
     input.addEventListener('change', () => {
-      const task = {
+      const thisTask = {
         description: input.value,
-        completed: tasks[i].completed,
-        index: tasks[i].index,
+        completed: task.completed,
+        index: task.index,
       };
-      tasksObject.edit(i, task);
+      tasksObject.edit(i, thisTask);
     });
-  }
-  taskDrag(tasksObject);
+  });
+  dragAndDrop(tasksObject);
 };
 
-export default (display);
+const getDragAfterElement = (container, y) => {
+  const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging)')];
+
+  return draggableElements.reduce((closest, child) => {
+    const box = child.getBoundingClientRect();
+    const offset = y - box.top - box.height / 2;
+    if (offset < 0 && offset > closest.offset) {
+      return { offset, element: child };
+    }
+    return closest;
+  }, { offset: Number.NEGATIVE_INFINITY }).element;
+};
+
+export {display, dragAndDrop};
