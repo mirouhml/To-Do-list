@@ -1,4 +1,4 @@
-import {display} from './modules/taskHandler.js';
+import { display } from './modules/taskHandler.js';
 import './style.css';
 import './asset/checkmark.svg';
 import './asset/vertical-dots.svg';
@@ -14,7 +14,6 @@ let rotate = -360;
 refresh.addEventListener('click', () => {
   refresh.style.transform = `rotate(${rotate}deg)`;
   rotate -= 360;
-  console.log('click');
   tasks.reset();
   display(tasks);
 });

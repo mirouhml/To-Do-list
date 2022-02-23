@@ -55,7 +55,7 @@ export default class Tasks {
   }
 
   search(description) {
-    const result = this.list.filter(task => task.description === description);
+    const result = this.list.filter((task) => task.description === description);
     return result[0].index;
   }
 

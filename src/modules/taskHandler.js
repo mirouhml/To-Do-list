@@ -12,6 +12,19 @@ const dynamicSort = (property) => {
   };
 };
 
+const getDragAfterElement = (container, y) => {
+  const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging)')];
+
+  return draggableElements.reduce((closest, child) => {
+    const box = child.getBoundingClientRect();
+    const offset = y - box.top - box.height / 2;
+    if (offset < 0 && offset > closest.offset) {
+      return { offset, element: child };
+    }
+    return closest;
+  }, { offset: Number.NEGATIVE_INFINITY }).element;
+};
+
 const dragAndDrop = (tasks) => {
   const list = tasks.getTasks();
   const draggables = document.querySelectorAll('.draggable');
@@ -23,10 +36,9 @@ const dragAndDrop = (tasks) => {
 
     draggable.addEventListener('dragend', () => {
       draggable.classList.remove('dragging');
-      const everyChild = document.querySelectorAll("#to-do-list li");
-      everyChild.forEach((child,index) => {
+      const everyChild = document.querySelectorAll('#to-do-list li');
+      everyChild.forEach((child, index) => {
         list[child.getAttribute('id')].index = index;
-        console.log(child.getAttribute('id'))
       });
       list.sort(dynamicSort('index'));
       tasks.orderTasks(list);
@@ -39,8 +51,8 @@ const dragAndDrop = (tasks) => {
 
     draggable.removeEventListener('dragend', () => {
       draggable.classList.remove('dragging');
-      const everyChild = document.querySelectorAll("#to-do-list li");
-      everyChild.forEach((child,index) => {
+      const everyChild = document.querySelectorAll('#to-do-list li');
+      everyChild.forEach((child, index) => {
         list[child.getAttribute('id')].index = index;
       });
       tasks.orderTasks();
@@ -61,7 +73,7 @@ const dragAndDrop = (tasks) => {
 const display = (tasksObject) => {
   const tasks = tasksObject.getTasks();
   listContainer.innerHTML = '';
-  tasks.forEach((task,i) => {
+  tasks.forEach((task, i) => {
     const listItem = document.createElement('li');
     listItem.classList.add('list-item');
     listItem.classList.add('draggable');
@@ -118,17 +130,4 @@ const display = (tasksObject) => {
   dragAndDrop(tasksObject);
 };
 
-const getDragAfterElement = (container, y) => {
-  const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging)')];
-
-  return draggableElements.reduce((closest, child) => {
-    const box = child.getBoundingClientRect();
-    const offset = y - box.top - box.height / 2;
-    if (offset < 0 && offset > closest.offset) {
-      return { offset, element: child };
-    }
-    return closest;
-  }, { offset: Number.NEGATIVE_INFINITY }).element;
-};
-
-export {display, dragAndDrop};
+export { display, dragAndDrop };
