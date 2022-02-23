@@ -25,18 +25,20 @@ export default class Tasks {
       index: this.list.length,
     };
     this.list.push(task);
-    this.orderTasks();
+    this.populateStorage();
+    return this.list.length;
   }
 
   remove(description) {
     const index = this.search(description);
-    this.list[index].index = this.list.length;
-    this.orderTasks();
-    this.list.pop();
+    this.list.splice(index, 1);
     for (let i = 0; i < this.list.length; i += 1) {
       this.list[i].index = i;
     }
+    console.log(this.list.length);
     this.populateStorage();
+    console.log(this.list.length);
+    return this.list.length;
   }
 
   edit(index, task) {
@@ -74,7 +76,7 @@ export default class Tasks {
 
   orderTasks(list) {
     this.list = list;
-    this.list.sort(dynamicSort('index'));
+    this.list.sort((dynamicSort('index')));
     this.populateStorage();
   }
 }
