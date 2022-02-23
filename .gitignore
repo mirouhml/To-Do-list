@@ -1,7 +1,5 @@
 node_modules
 .vscode
 src/sass
-
-
 dist/
 coverage/

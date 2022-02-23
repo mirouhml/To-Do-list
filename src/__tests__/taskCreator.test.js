@@ -27,8 +27,8 @@ describe('AddTask', () => {
   });
 });
 
-describe('remove task', () => {
-  test('remove 1 task of 2', () => {
+describe('Remove task', () => {
+  test('Remove 1 task of 2', () => {
     const taskList = new Tasks();
     taskList.add('task1');
     taskList.add('task2');
@@ -36,7 +36,7 @@ describe('remove task', () => {
     expect(taskList.getTasks()).toHaveLength(1);
   });
 
-  test('remove 2 tasks of 2', () => {
+  test('Remove 2 tasks of 2', () => {
     const taskList = new Tasks();
     taskList.add('task1');
     taskList.add('task2');
@@ -45,7 +45,7 @@ describe('remove task', () => {
     expect(taskList.getTasks()).toHaveLength(0);
   });
 
-  test('remove 1 task of 3', () => {
+  test('Remove 1 task of 3', () => {
     const taskList = new Tasks();
     taskList.add('task1');
     taskList.add('task2');
