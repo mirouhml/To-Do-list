@@ -4,3 +4,4 @@ src/sass
 .eslintrc.json
 .stylelintrc.json
 dist/
+coverage/
