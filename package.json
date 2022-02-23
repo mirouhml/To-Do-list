@@ -14,7 +14,9 @@
       "^.+\\.[t|j]sx?$": "babel-jest"
     },
     "resetMocks": true,
-    "setupFiles": ["jest-localstorage-mock"]
+    "setupFiles": [
+      "jest-localstorage-mock"
+    ]
   },
   "repository": {
     "type": "git",
