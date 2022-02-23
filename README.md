@@ -1,6 +1,11 @@
 # To-Do-List
 
-> This is a simple implementation of a todo list using the minimalist demo.
+This is a website for a simple to do list, where you can do the following:
+
+- Add the tasks you want to do.
+- Remove any tasks you finished already by checking the box next to each task you finished then using the clear all completed button.
+- Edit any tasks you want.
+- Reorder the tasks to what suits you.
 
 ![screenshot](./src/asset/screenshot.png)
 
@@ -12,6 +17,9 @@
 
 ## Built With
 
+- HTML
+- CSS
+- SCSS
 - Webhint
 - Stylelint
 - ESlint
