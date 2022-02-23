@@ -10,7 +10,9 @@ const dynamicSort = (property) => {
 
 export default class Tasks {
   constructor() {
-    if (localStorage.getItem('tasks')) { this.list = JSON.parse(localStorage.getItem('tasks')); } else this.list = [];
+    if (localStorage.getItem('tasks')) {
+      this.list = JSON.parse(localStorage.getItem('tasks'));
+    } else this.list = [];
   }
 
   populateStorage() {
@@ -25,18 +27,18 @@ export default class Tasks {
       index: this.list.length,
     };
     this.list.push(task);
-    this.orderTasks();
+    this.populateStorage();
+    return this.list.length;
   }
 
   remove(description) {
     const index = this.search(description);
-    this.list[index].index = this.list.length;
-    this.orderTasks();
-    this.list.pop();
+    this.list.splice(index, 1);
     for (let i = 0; i < this.list.length; i += 1) {
       this.list[i].index = i;
     }
     this.populateStorage();
+    return this.list.length;
   }
 
   edit(index, task) {
@@ -69,7 +71,9 @@ export default class Tasks {
   }
 
   setTasks() {
-    if (localStorage.getItem('tasks')) { this.list = JSON.parse(localStorage.getItem('tasks')); }
+    if (localStorage.getItem('tasks')) {
+      this.list = JSON.parse(localStorage.getItem('tasks'));
+    }
   }
 
   orderTasks(list) {
