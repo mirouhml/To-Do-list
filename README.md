@@ -15,6 +15,13 @@ This is a website for a simple to do list, where you can do the following:
 
 ### Features implemented so far are:
 
+- Add task.
+- Remove task.
+- Edit task.
+- Clear all completed tasks.
+- Clear all tasks
+- Reorder tasks.
+
 ## Built With
 
 - HTML
