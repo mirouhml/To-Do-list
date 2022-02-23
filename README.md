@@ -34,56 +34,9 @@ The basic requirements for building the executable are:
 git clone  https://github.com/mirouhml/To-Do-list <Your-Build-Directory>
 ```
 
-## Getting packages and debuging with Stylelint
-
+## Getting packages installed
 ```
-npm install --save-dev stylelint@13.x stylelint-scss@3.x stylelint-config-standard@21.x stylelint-csstree-validator@1.x
-```
-
-##### For validation detection using Stylelint Run
-
-```
-npx stylelint "**/*.{css,scss}"
-```
-
-##### from parent source directory
-
-## Getting packages and debuging with ESlint
-
-```
-npm install --save-dev eslint@7.x eslint-config-airbnb-base@14.x eslint-plugin-import@2.x babel-eslint@10.x
-```
-
-##### For validation detection using Stylelint Run
-
-```
-npx eslint .
-```
-
-##### from parent source directory
-
-## Getting packages and debuging with Webhint
-
-```
-npm init -y
-npm install --save-dev hint@6.x
-```
-
-##### For validation detection using Webhint Run
-
-```
-npx hint .
-```
-
-##### from parent source directory
-
-## Getting Webpack packages installed
-
-```
-npm install webpack webpack-cli --save-dev
-npm install --save-dev html-webpack-plugin
-npm install --save-dev style-loader css-loader
-npm install --save-dev webpack-dev-server
+npm install
 ```
 
 ## Running the website locally

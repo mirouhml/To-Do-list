@@ -7,6 +7,7 @@ const dynamicSort = (property) => {
     return result * sortOrder;
   };
 };
+
 export default class Tasks {
   constructor() {
     if (localStorage.getItem('tasks')) { this.list = JSON.parse(localStorage.getItem('tasks')); } else this.list = [];
@@ -21,19 +22,19 @@ export default class Tasks {
     const task = {
       description,
       completed: false,
-      index: this.list.length + 1,
+      index: this.list.length,
     };
     this.list.push(task);
-    this.list.sort(dynamicSort('index'));
-    this.populateStorage();
+    this.orderTasks();
   }
 
-  remove(index) {
-    this.list[index].index = this.list.length + 1;
-    this.list.sort(dynamicSort('index'));
+  remove(description) {
+    const index = this.search(description);
+    this.list[index].index = this.list.length;
+    this.orderTasks();
     this.list.pop();
     for (let i = 0; i < this.list.length; i += 1) {
-      this.list[i].index = i + 1;
+      this.list[i].index = i;
     }
     this.populateStorage();
   }
@@ -42,8 +43,7 @@ export default class Tasks {
     this.list[index].description = task.description;
     this.list[index].completed = task.completed;
     this.list[index].index = task.index;
-    this.list.sort(dynamicSort('index'));
-    this.populateStorage();
+    this.orderTasks();
   }
 
   clear() {
@@ -54,11 +54,27 @@ export default class Tasks {
     this.populateStorage();
   }
 
+  search(description) {
+    const result = this.list.filter((task) => task.description === description);
+    return result[0].index;
+  }
+
+  reset() {
+    this.list = [];
+    this.populateStorage();
+  }
+
   getTasks() {
     return this.list;
   }
 
   setTasks() {
     if (localStorage.getItem('tasks')) { this.list = JSON.parse(localStorage.getItem('tasks')); }
+  }
+
+  orderTasks(list) {
+    this.list = list;
+    this.list.sort(dynamicSort('index'));
+    this.populateStorage();
   }
 }

@@ -1,41 +1,106 @@
-import Tasks from './tasksCreator.js';
 import updateStatus from './taskUpdater.js';
 
 const listContainer = document.getElementById('to-do-list');
 
-const tasksObject = new Tasks();
+const dynamicSort = (property) => {
+  const sortOrder = 1;
+  return (a, b) => {
+    let result = 0;
+    if (a[property] < b[property]) result = -1;
+    else if (a[property] > b[property]) result = 1;
+    return result * sortOrder;
+  };
+};
 
-const display = (tasks) => {
+const getDragAfterElement = (container, y) => {
+  const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging)')];
+
+  return draggableElements.reduce((closest, child) => {
+    const box = child.getBoundingClientRect();
+    const offset = y - box.top - box.height / 2;
+    if (offset < 0 && offset > closest.offset) {
+      return { offset, element: child };
+    }
+    return closest;
+  }, { offset: Number.NEGATIVE_INFINITY }).element;
+};
+
+const dragAndDrop = (tasks) => {
+  const list = tasks.getTasks();
+  const draggables = document.querySelectorAll('.draggable');
+  const container = document.getElementById('to-do-list');
+  draggables.forEach((draggable) => {
+    draggable.addEventListener('dragstart', () => {
+      draggable.classList.add('dragging');
+    });
+
+    draggable.addEventListener('dragend', () => {
+      draggable.classList.remove('dragging');
+      const everyChild = document.querySelectorAll('#to-do-list li');
+      everyChild.forEach((child, index) => {
+        list[child.getAttribute('id')].index = index;
+      });
+      list.sort(dynamicSort('index'));
+      tasks.orderTasks(list);
+    });
+  });
+  draggables.forEach((draggable) => {
+    draggable.removeEventListener('dragstart', () => {
+      draggable.classList.add('dragging');
+    });
+
+    draggable.removeEventListener('dragend', () => {
+      draggable.classList.remove('dragging');
+      const everyChild = document.querySelectorAll('#to-do-list li');
+      everyChild.forEach((child, index) => {
+        list[child.getAttribute('id')].index = index;
+      });
+      tasks.orderTasks();
+    });
+  });
+  container.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    const afterElement = getDragAfterElement(container, e.clientY);
+    const draggable = document.querySelector('.dragging');
+    if (afterElement == null) {
+      container.appendChild(draggable);
+    } else {
+      container.insertBefore(draggable, afterElement);
+    }
+  });
+};
+
+const display = (tasksObject) => {
+  const tasks = tasksObject.getTasks();
   listContainer.innerHTML = '';
-  for (let i = 0; i < tasks.length; i += 1) {
+  tasks.forEach((task, i) => {
     const listItem = document.createElement('li');
     listItem.classList.add('list-item');
+    listItem.classList.add('draggable');
+    listItem.setAttribute('draggable', 'true');
+    listItem.setAttribute('id', i);
     listItem.innerHTML = `<div class="checkbox" id="checkbox${i}"></div>
                           <img class="checkmark" id="checkmark${i}" src="./asset/checkmark.svg" alt="Checkmark">
                           <div class="input-div" id="input-div${i}">
                             <input type="text" class="task-description" id="description${i}">
                             <img class="remove" id="remove${i}" src="./asset/garbage.svg" alt="Garbage bin icon">
-                            <img class="dots" id="dots${i}" src="./asset/vertical-dots.svg" alt="Vertical dots">
+                            <img class="dots" draggable="false" id="dots${i}" src="./asset/vertical-dots.svg" alt="Vertical dots">
                           </div>
                           `;
-    const hr = document.createElement('hr');
     listContainer.appendChild(listItem);
-    listContainer.appendChild(hr);
     const checkbox = document.getElementById(`checkbox${i}`);
     const checkmark = document.getElementById(`checkmark${i}`);
     const text = document.getElementById(`description${i}`);
     const elementArray = [checkmark, checkbox, text];
-    updateStatus(elementArray, tasks[i], i);
+    updateStatus(elementArray, tasksObject, i);
     const remove = document.getElementById(`remove${i}`);
     const dots = document.getElementById(`dots${i}`);
     const input = document.getElementById(`description${i}`);
     const inputDiv = document.getElementById(`input-div${i}`);
     input.value = tasks[i].description;
-
     document.addEventListener('click', (event) => {
       const isClickInside = inputDiv.contains(event.target);
       if (!isClickInside) {
-        // the click was outside the specifiedElement, do something
         listItem.style.backgroundColor = '#fff';
         input.style.backgroundColor = '#fff';
         remove.style.display = 'none';
@@ -50,18 +115,19 @@ const display = (tasks) => {
       }
     });
     remove.addEventListener('click', () => {
-      tasksObject.remove(i);
-      display(tasksObject.getTasks());
+      tasksObject.remove(input.value);
+      display(tasksObject);
     });
     input.addEventListener('change', () => {
-      const task = {
+      const thisTask = {
         description: input.value,
-        completed: tasks[i].completed,
-        index: tasks[i].index,
+        completed: task.completed,
+        index: task.index,
       };
-      tasksObject.edit(i, task);
+      tasksObject.edit(i, thisTask);
     });
-  }
+  });
+  dragAndDrop(tasksObject);
 };
 
-export default (display);
+export { display, dragAndDrop };
