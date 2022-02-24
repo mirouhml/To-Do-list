@@ -55,13 +55,12 @@ describe('Remove task', () => {
   });
 });
 
-
 describe('Reset to do list', () => {
-    it('Remove all tasks', () => {
-      const taskList = new Tasks();
-      taskList.add('task1');
-      taskList.add('task2');
-      taskList.reset();
-      expect(taskList.getTasks()).toHaveLength(0);
-    });
+  it('Remove all tasks', () => {
+    const taskList = new Tasks();
+    taskList.add('task1');
+    taskList.add('task2');
+    taskList.reset();
+    expect(taskList.getTasks()).toHaveLength(0);
+  });
 });

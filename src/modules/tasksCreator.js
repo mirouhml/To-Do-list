@@ -31,7 +31,7 @@ export default class Tasks {
   }
 
   remove(description) {
-    const index = this.search(description).index;
+    const { index } = this.search(description);
     this.list.splice(index, 1);
     for (let i = 0; i < this.list.length; i += 1) {
       this.list[i].index = i;
