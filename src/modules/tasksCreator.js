@@ -17,7 +17,6 @@ export default class Tasks {
 
   populateStorage() {
     localStorage.setItem('tasks', JSON.stringify(this.list));
-    this.setTasks();
   }
 
   add(description) {
@@ -32,7 +31,7 @@ export default class Tasks {
   }
 
   remove(description) {
-    const index = this.search(description);
+    const { index } = this.search(description);
     this.list.splice(index, 1);
     for (let i = 0; i < this.list.length; i += 1) {
       this.list[i].index = i;
@@ -58,7 +57,7 @@ export default class Tasks {
 
   search(description) {
     const result = this.list.filter((task) => task.description === description);
-    return result[0].index;
+    return result[0];
   }
 
   reset() {
@@ -70,14 +69,7 @@ export default class Tasks {
     return this.list;
   }
 
-  setTasks() {
-    if (localStorage.getItem('tasks')) {
-      this.list = JSON.parse(localStorage.getItem('tasks'));
-    }
-  }
-
-  orderTasks(list) {
-    this.list = list;
+  orderTasks() {
     this.list.sort(dynamicSort('index'));
     this.populateStorage();
   }

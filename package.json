@@ -4,7 +4,7 @@
   "description": "> This is a simple implementation of a todo list using the minimalist demo.",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest --coverage --verbose",
     "start": "webpack serve --open",
     "watch": "jest --watch *.test.js",
     "build": "webpack"
