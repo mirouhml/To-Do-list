@@ -31,6 +31,20 @@ describe('Display tasks', () => {
         const list = document.querySelectorAll('#to-do-list li');
         expect(list).toHaveLength(2);
     });
+
+    it('Add two new items to the list', () => {
+        const tasks = new Tasks();
+        document.body.innerHTML =
+        '<div>' +
+        '  <ul class="to-do-list" id="to-do-list"></ul>' +
+        '</div>';
+        tasks.add('task1');
+        tasks.add('task2');
+        tasks.remove('task2')
+        display(tasks);
+        const list = document.querySelectorAll('#to-do-list li');
+        expect(list).toHaveLength(1);
+    });
 })
 
 describe('Edit tasks', () => {
