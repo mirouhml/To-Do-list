@@ -1,17 +1,5 @@
 import updateStatus from './taskUpdater.js';
 
-const listContainer = document.getElementById('to-do-list');
-
-const dynamicSort = (property) => {
-  const sortOrder = 1;
-  return (a, b) => {
-    let result = 0;
-    if (a[property] < b[property]) result = -1;
-    else if (a[property] > b[property]) result = 1;
-    return result * sortOrder;
-  };
-};
-
 const getDragAfterElement = (container, y) => {
   const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging)')];
 
@@ -40,7 +28,6 @@ const dragAndDrop = (tasks) => {
       everyChild.forEach((child, index) => {
         list[child.getAttribute('id')].index = index;
       });
-      list.sort(dynamicSort('index'));
       tasks.orderTasks(list);
     });
   });
@@ -71,6 +58,7 @@ const dragAndDrop = (tasks) => {
 };
 
 const display = (tasksObject) => {
+  const listContainer = document.getElementById('to-do-list');
   const tasks = tasksObject.getTasks();
   listContainer.innerHTML = '';
   tasks.forEach((task, i) => {
