@@ -61,6 +61,20 @@ describe('Edit tasks', () => {
         expect(editedTask.description).toBe('task2');
     });
 
+    it('Edit one task\'s description', () => {
+        const tasks = new Tasks();
+        tasks.add('task1');
+        tasks.add('task2');
+        let editedTask = tasks.search('task2');
+        const task = {
+            description: 'not task2',
+            completed: editedTask.completed,
+            index: editedTask.index,
+        };
+        tasks.edit(1,task);
+        expect(editedTask.description).toBe('not task2');
+    });
+
     it('Edit one task\'s status from pending to finished', () => {
         const tasks = new Tasks();
         tasks.add('task1');
