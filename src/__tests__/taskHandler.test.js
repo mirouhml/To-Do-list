@@ -18,6 +18,7 @@ describe('Display tasks', () => {
 
   it('Add two new items to the list', () => {
     const tasks = new Tasks();
+    tasks.reset();
     document.body.innerHTML = '<div>  <ul class="to-do-list" id="to-do-list"></ul> </div>';
     tasks.add('task1');
     tasks.add('task2');
@@ -28,6 +29,7 @@ describe('Display tasks', () => {
 
   it('Add two new items to the list', () => {
     const tasks = new Tasks();
+    tasks.reset();
     document.body.innerHTML = '<div>  <ul class="to-do-list" id="to-do-list"></ul> </div>';
     tasks.add('task1');
     tasks.add('task2');
@@ -41,6 +43,7 @@ describe('Display tasks', () => {
 describe('Edit tasks', () => {
   it("Edit one task's description", () => {
     const tasks = new Tasks();
+    tasks.reset();
     tasks.add('task1');
     const editedTask = tasks.search('task1');
     const task = {
@@ -54,6 +57,7 @@ describe('Edit tasks', () => {
 
   it("Edit one task's description", () => {
     const tasks = new Tasks();
+    tasks.reset();
     tasks.add('task1');
     tasks.add('task2');
     const editedTask = tasks.search('task2');
@@ -68,6 +72,7 @@ describe('Edit tasks', () => {
 
   it("Edit one task's status from pending to finished", () => {
     const tasks = new Tasks();
+    tasks.reset();
     tasks.add('task1');
     tasks.add('task2');
     document.body.innerHTML = '<div>  <ul class="to-do-list" id="to-do-list"></ul> </div>';
@@ -84,6 +89,7 @@ describe('Edit tasks', () => {
 
   it("Edit one task's status from finished to pending", () => {
     const tasks = new Tasks();
+    tasks.reset();
     tasks.add('task1');
     tasks.add('task2');
     document.body.innerHTML = '<div> <ul class="to-do-list" id="to-do-list"></ul> </div>';
@@ -103,6 +109,7 @@ describe('Edit tasks', () => {
 describe('Clear completed tasks', () => {
   it('Clear one task', () => {
     const tasks = new Tasks();
+    tasks.reset();
     tasks.add('task1');
     tasks.add('task2');
     tasks.add('task2');
@@ -120,6 +127,7 @@ describe('Clear completed tasks', () => {
 
   it('Clear two tasks', () => {
     const tasks = new Tasks();
+    tasks.reset();
     tasks.add('task1');
     tasks.add('task2');
     tasks.add('task2');

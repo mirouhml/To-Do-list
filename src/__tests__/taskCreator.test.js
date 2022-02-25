@@ -3,6 +3,7 @@ import Tasks from '../modules/tasksCreator.js';
 describe('AddTask', () => {
   it('Test case 1', () => {
     const tasks = new Tasks();
+    tasks.reset();
     tasks.add('task1');
     tasks.add('task2');
     expect(tasks.getTasks()).toHaveLength(2);
@@ -10,6 +11,7 @@ describe('AddTask', () => {
 
   it('Test case 2', () => {
     const tasks = new Tasks();
+    tasks.reset();
     tasks.add('task1');
     tasks.add('task2');
     tasks.add('task3');
@@ -20,6 +22,7 @@ describe('AddTask', () => {
 
   it('Test case 3', () => {
     const tasks = new Tasks();
+    tasks.reset();
     tasks.add('task1');
     tasks.add('task2');
     tasks.add('task3');
@@ -30,6 +33,7 @@ describe('AddTask', () => {
 describe('Remove task', () => {
   test('Remove 1 task of 2', () => {
     const taskList = new Tasks();
+    taskList.reset();
     taskList.add('task1');
     taskList.add('task2');
     taskList.remove('task1');
@@ -38,6 +42,7 @@ describe('Remove task', () => {
 
   test('Remove 2 tasks of 2', () => {
     const taskList = new Tasks();
+    taskList.reset();
     taskList.add('task1');
     taskList.add('task2');
     taskList.remove('task1');
@@ -47,6 +52,7 @@ describe('Remove task', () => {
 
   test('Remove 1 task of 3', () => {
     const taskList = new Tasks();
+    taskList.reset();
     taskList.add('task1');
     taskList.add('task2');
     taskList.add('task3');
